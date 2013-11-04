@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'slop'
+def main(argv)
+	usage if argv.empty?
+	
+	p argv
+end
 
-opts = Slop.new({
-	:help   => true,
-	:banner =>	[
+def usage
+	$stderr.puts [
 		'Auto-generates association.csv from column.csv when we have same column names.',
 		'It`s useful in case of mysql MyISAM tables or another cases, when we lost our relationships.',
 		'Helper for http://jailer.sourceforge.net/ -- Java written database subsetting tool.',
@@ -13,21 +15,11 @@ opts = Slop.new({
 		'     (c) 2013 github.com/garex, a@ustimen.co',
 		'',
 		'',
-		"Usage: #{File.basename($0, '.*')} [options]",
+		"Usage: #{File.basename($0)} path-to-column.csv",
 	] * $/
-	}) do
-  on :s, :source=,      'Source column CSV file. Usually "column.csv"', {:required => true}
-  on :d, :destination=, 'Destination associations CSV file. Usually "association.csv"', {:required => true}
-end
-
-begin
-	opts.parse! ARGV
-rescue Slop::MissingOptionError => err
-	$stderr.puts err
-	$stderr.puts '*' * 50
-	$stderr.puts opts.help
 	exit
 end
 
-p opts.to_hash
+
+main ARGV
 

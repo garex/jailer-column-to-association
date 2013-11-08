@@ -130,7 +130,7 @@ def usage
 		'     (c) 2013 github.com/garex, a@ustimen.co',
 		'',
 		'',
-		"Usage: #{File.basename($0)} path-to-column.csv",
+		"Usage: #{File.basename($0)} path/to/yours/column.csv > path/to/yours/association.csv",
 	] * $/
 	exit
 end

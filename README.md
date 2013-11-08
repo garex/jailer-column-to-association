@@ -6,6 +6,11 @@ Auto-generates association.csv from column.csv when we have same column names.
 It's useful in case of mysql MyISAM tables or another cases, when we lost our relationships.
 Helper for http://jailer.sourceforge.net/ -- Java written database subsetting tool.
 
+## Install
+
+    wget https://raw.github.com/garex/jailer-column-to-association/master/jailer-column-to-association.rb
+    chmod +x jailer-column-to-association.rb
+
 ## Usage
 
     path/to/jailer-column-to-association.rb path/to/yours/column.csv > path/to/yours/association.csv

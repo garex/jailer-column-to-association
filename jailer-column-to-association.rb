@@ -84,7 +84,7 @@ end
 def main
   usage if input_empty?
 
-  db = Database.parse_from_csv(CSV.parse(ARGF.read, '; '))
+  db = Database.parse_from_csv(CSV.parse(ARGF.read, col_sep: '; ', liberal_parsing: true))
 
   associations = []
   db.each_columns do |c, t|
@@ -102,11 +102,13 @@ def main
     ]
   end
 
-  CSV::Writer.generate($stdout, '; ') do |csv|
-    associations.each do |a|
-      csv << a
+  str = CSV.generate(col_sep: '; ', quote_char: '') do |csv|
+    associations.each do |row|
+      csv << row
     end
   end
+
+  puts str
 end
 
 def input_empty?
